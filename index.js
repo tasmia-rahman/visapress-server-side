@@ -41,7 +41,6 @@ async function run() {
             res.send(service);
         });
 
-        var myDate = new Date("2016-05-18T16:00:00Z");
         //Reviews
         app.get('/reviews', async (req, res) => {
 
