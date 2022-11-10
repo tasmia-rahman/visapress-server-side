@@ -110,7 +110,7 @@ async function run() {
             res.send(reviews);
         });
 
-        app.get('/my_reviews/:id', verifyJWT, async (req, res) => {
+        app.get('/my_reviews/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const review = await reviewCollection.findOne(query);
