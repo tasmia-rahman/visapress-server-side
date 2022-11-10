@@ -22,7 +22,7 @@ async function run() {
         //Services
         app.get('/home_services', async (req, res) => {
             const query = {}
-            const cursor = serviceCollection.find(query);
+            const cursor = serviceCollection.find(query).sort({ _id: -1 });
             const services = await cursor.limit(3).toArray();
             res.send(services);
         });
@@ -39,6 +39,12 @@ async function run() {
             const query = { _id: ObjectId(id) };
             const service = await serviceCollection.findOne(query);
             res.send(service);
+        });
+
+        app.post('/services', async (req, res) => {
+            const service = req.body;
+            const result = await serviceCollection.insertOne(service);
+            res.send(result);
         });
 
         //Reviews
